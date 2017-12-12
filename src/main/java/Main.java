@@ -28,7 +28,7 @@ public class Main {
         contextHandler.addServlet(new ServletHolder(new MakeOrderServlet(dataBaseHelper)), "/order.new");
 
 
-        Server server = new Server(1488);
+        Server server = new Server(8080);
         server.setHandler(contextHandler);
 
         try {
