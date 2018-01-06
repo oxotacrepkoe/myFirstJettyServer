@@ -1,7 +1,7 @@
 package servlets;
 
 import DataBase.DataBaseHelper;
-import DataBase.DataSet.DishDataSet;
+import DataBase.DataSet.OrderDataSet;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -12,23 +12,25 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class DishServlet extends HttpServlet {
+public class GetUsersOrdersServlet extends HttpServlet {
 
-    private DataBaseHelper dataBaseHelper;
+    private DataBaseHelper dbHelper;
 
-    public DishServlet(DataBaseHelper dataBaseHelper) {
-        this.dataBaseHelper = dataBaseHelper;
+
+    public GetUsersOrdersServlet(DataBaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doPost(req, resp);
 
-        Long category_id = Long.parseLong(req.getParameter("category_id"));
-        List<DishDataSet> res = dataBaseHelper.getDishes(category_id);
+        long user_id = Long.parseLong(req.getParameter("user_id"));
+
+        List<OrderDataSet> orders = dbHelper.getOrders(user_id);
 
         resp.setContentType("text/html; charset=UTF-8");
-        resp.getWriter().println(new Gson().toJson(res));
+        resp.getWriter().println(new Gson().toJson(orders));
         resp.setStatus(HttpServletResponse.SC_OK);
     }
 }

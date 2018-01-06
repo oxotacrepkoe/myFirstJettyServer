@@ -119,6 +119,14 @@ public class DataBaseHelper {
         session.close();
     }
 
+    public List<OrderDataSet> getOrders (long user_id) {
+        Session session = sessionFactory.openSession();
+        OrderDAO dao = new OrderDAO(session);
+        List<OrderDataSet> result = dao.get(user_id);
+        session.close();
+        return result;
+    }
+
     public UserDataSet getUserById (long user_id) {
         Session session = sessionFactory.openSession();
         UserDAO dao = new UserDAO(session);

@@ -29,6 +29,8 @@ public class LoginServlet extends HttpServlet {
 
         UserDataSet dataSet = dbHelper.userLogin(login);
 
+        resp.setContentType("text/html; charset=UTF-8");
+
         if (dataSet != null && dataSet.getPassword().equals(password)) {
             resp.getWriter().println(dataSet.toString());
             resp.setStatus(HttpServletResponse.SC_OK);
