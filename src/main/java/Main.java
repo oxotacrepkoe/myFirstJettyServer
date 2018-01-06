@@ -16,16 +16,16 @@ public class Main {
 
         HelloServlet servlet = new HelloServlet();
 
-        DataBaseHelper dataBaseHelper = new DataBaseHelper("ORM");
+       /* DataBaseHelper dataBaseHelper = new DataBaseHelper("ORM");
 
-        contextHandler.addServlet(new ServletHolder(servlet), "/hello");
+
         contextHandler.addServlet(new ServletHolder(new LoginServlet(dataBaseHelper)), "/login");
         contextHandler.addServlet(new ServletHolder(new CategoryServlet(dataBaseHelper)), "/category");
         contextHandler.addServlet(new ServletHolder(new DishServlet(dataBaseHelper)), "/dish");
         contextHandler.addServlet(new ServletHolder(new MakeOrderServlet(dataBaseHelper)), "/order.new");
-        contextHandler.addServlet(new ServletHolder(new GetUsersOrdersServlet(dataBaseHelper)), "/order.get");
+        contextHandler.addServlet(new ServletHolder(new GetUsersOrdersServlet(dataBaseHelper)), "/order.get");*/
 
-
+        contextHandler.addServlet(new ServletHolder(servlet), "/hello");
         Server server = new Server(8080);
         System.out.println("Connectors count: " + server.getConnectors().length);
         server.setHandler(contextHandler);
